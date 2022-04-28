@@ -30,14 +30,10 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>Yahooh!!!!!!!!</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("My First Servlets");
-		out.println("</body>");
-		out.println("</html>");
+		String name=request.getParameter("name");
+		System.out.println(name);
+		request.setAttribute("name",name);
+	    request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 
 	}
 
