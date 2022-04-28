@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-Login ${name}
+<form action="login.do" method="post">
+Name: <input type="text" name="name"/><br>
+<input type="submit" value="Login"/>
+</form>
 </body>
 </html>
