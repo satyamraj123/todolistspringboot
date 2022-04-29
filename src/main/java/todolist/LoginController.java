@@ -19,6 +19,19 @@ public String doGet() {
 @RequestMapping(value="/login", method=RequestMethod.POST)
 public String doPost(@RequestParam String name, ModelMap model) {
 	model.put("name", name);
-	return "welcome";
+	if(isValidUser(name)) {
+		return "welcome";
+	}else {
+		model.put("errorMessage", "invalid user");
+		return "login";
+	}
+}
+
+private boolean isValidUser(String name) {
+	if(name.compareTo("Satyam Raj")==0) {
+		return true;
+	}else {
+		return false;
+	}
 }
 }

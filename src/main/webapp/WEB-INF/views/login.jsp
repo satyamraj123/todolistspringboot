@@ -8,6 +8,7 @@
 </head>
 <body>
 <form action="login" method="post">
+<p><font color="red">${errorMessage}</font></p>
 Name: <input type="text" name="name"/><br>
 <input type="submit" value="Login"/>
 </form>
