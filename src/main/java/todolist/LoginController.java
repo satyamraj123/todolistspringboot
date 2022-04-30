@@ -1,5 +1,6 @@
 package todolist;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
-	
+
+@Autowired
+LoginService service;
+//instead of loginservice service=new loginservice() we use autowired and service annotation
+
 @RequestMapping(value="/login", method=RequestMethod.GET)
 public String doGet() {
 	//viewresolver
@@ -19,7 +24,9 @@ public String doGet() {
 @RequestMapping(value="/login", method=RequestMethod.POST)
 public String doPost(@RequestParam String name, ModelMap model) {
 	model.put("name", name);
-	if(isValidUser(name)) {
+	
+	
+	if(service.isValidUser(name)) {
 		return "welcome";
 	}else {
 		model.put("errorMessage", "invalid user");
@@ -27,11 +34,5 @@ public String doPost(@RequestParam String name, ModelMap model) {
 	}
 }
 
-private boolean isValidUser(String name) {
-	if(name.compareTo("Satyam Raj")==0) {
-		return true;
-	}else {
-		return false;
-	}
-}
+
 }
