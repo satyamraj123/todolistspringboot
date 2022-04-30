@@ -7,6 +7,7 @@
 <title>Welcome</title>
 </head>
 <body>
-Welcome ${name}
+Welcome ${name}.<br>
+You can manage to-do list <a href="list-todos">here</a>
 </body>
 </html>

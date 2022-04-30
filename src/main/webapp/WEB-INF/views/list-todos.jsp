@@ -7,7 +7,8 @@
 <title>Todo List</title>
 </head>
 <body>
+Hi ${name}<br>
 Your todos are
-${todos[0].getId()}
+${todos}
 </body>
 </html>
