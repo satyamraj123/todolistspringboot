@@ -46,10 +46,10 @@ public class Todo {
 	public void setTargetDate(Date targetDate) {
 		this.targetDate = targetDate;
 	}
-	public boolean isDone() {
+	public boolean getIsDone() {
 		return isDone;
 	}
-	public void setDone(boolean isDone) {
+	public void setIsDone(boolean isDone) {
 		this.isDone = isDone;
 	}
 	@Override

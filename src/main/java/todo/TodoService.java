@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TodoService {
 	private static List<Todo> todos = new ArrayList<Todo>();
-	private static int todoCount = 3;
+	public static int todoCount = 3;
 
 	static {
 		todos.add(new Todo(1, "Satyam Raj", "Learn Spring MVC", new Date(),
@@ -42,4 +42,17 @@ public class TodoService {
 			}
 		}
 	}
+	public Todo retrieveTodo(int id) {
+		for (Todo todo : todos) {
+			if (todo.getId() == id)
+				return todo;
+		}
+		return null;
+	}
+
+	public void updateTodo(Todo todo) {
+		todos.remove(todo);
+		todos.add(todo);
+	}
+   
 }
