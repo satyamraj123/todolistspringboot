@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Todo List</title>
+<title>To-do List</title>
 <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
 	    		rel="stylesheet">
 </head>
 <body>
 Hi ${name}<br>
-
-<table>
-<caption>Your todos are</caption>
+<div class="container">
+<table class="table table-striped">
+<caption>Your to-do's are</caption>
 
 <thead>
 <tr>
@@ -22,6 +22,7 @@ Hi ${name}<br>
 <th>Description</th>
 <th>Target Date</th>
 <th>Completed</th>
+<th></th>
 </tr>
 </thead>
 
@@ -33,14 +34,15 @@ Hi ${name}<br>
 <td>${todo.desc}</td>
 <td>${todo.targetDate}</td>
 <td>${todo.done}</td>
+<td><a href="delete-todo?id=${todo.id}" class="btn btn-danger">Delete</a></td>
 </tr>
 </c:forEach>
 </tbody>
 
 </table>
 <br>
-<a href="add-todo">Add</a>
-
+<a class="btn btn-success" href="add-todo">Add</a>
+</div>
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 	    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
