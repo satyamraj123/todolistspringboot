@@ -77,4 +77,9 @@ public String updateTodo(@RequestParam int id,ModelMap model,@Valid Todo todo, B
 	service.updateTodo(todo);
 	return "redirect:list-todos";
 }
+
+private String getLoggedInUser() {
+	return "Satyam Raj";
+}
+
 }
