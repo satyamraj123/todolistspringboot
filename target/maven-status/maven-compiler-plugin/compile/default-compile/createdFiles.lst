@@ -1,6 +1,5 @@
 login\LoginService.class
 todo\Todo.class
-webapp\LoginServlet.class
 todo\TodoService.class
 todo\TodoController.class
 login\LoginController.class

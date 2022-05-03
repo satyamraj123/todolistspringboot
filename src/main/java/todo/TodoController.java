@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -32,15 +34,16 @@ protected void initBinder(WebDataBinder binder) {
 
 @RequestMapping(value="/list-todos", method=RequestMethod.GET)
 public String litsTodo(ModelMap model) {
-	model.addAttribute("todos",service.retrieveTodos("Satyam Raj"));
+	model.addAttribute("todos",service.retrieveTodos(getLoggedInUser()));
 	return "list-todos";
 }
 
 
 @RequestMapping(value="/add-todo", method=RequestMethod.GET)
 public String addTodoForm(ModelMap model) {
-	model.addAttribute("todo",new Todo(0,"Satyam Raj","Description here",new Date(),false));
-	return "add-todo";
+	throw new RuntimeException("Dummy error");
+//	model.addAttribute("todo",new Todo(0,getLoggedInUser(),"Description here",new Date(),false));
+//	return "add-todo";
 }
 
 @RequestMapping(value="/add-todo", method=RequestMethod.POST)
@@ -48,7 +51,7 @@ public String addTodo(ModelMap model,@Valid Todo todo, BindingResult result) {
 	if(result.hasErrors()) {
 		return "add-todo";
 	}
-	service.addTodo("Satyam Raj", todo.getDesc(), new Date(), false);
+	service.addTodo(getLoggedInUser(), todo.getDesc(), new Date(), false);
 	model.clear();
 	return "redirect:list-todos";
 }
@@ -79,7 +82,13 @@ public String updateTodo(@RequestParam int id,ModelMap model,@Valid Todo todo, B
 }
 
 private String getLoggedInUser() {
-	return "Satyam Raj";
+	Object principal = SecurityContextHolder.getContext()
+			.getAuthentication().getPrincipal();
+
+	if (principal instanceof UserDetails)
+		return ((UserDetails) principal).getUsername();
+
+	return principal.toString();
 }
 
 }
