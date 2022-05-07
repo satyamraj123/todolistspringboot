@@ -5,7 +5,7 @@
 Hi ${name}<br>
 <div class="container">
 <table class="table table-striped">
-<caption>Your to-do's are</caption>
+<caption><spring:message code="todo.caption" /></caption>
 
 <thead>
 <tr>
